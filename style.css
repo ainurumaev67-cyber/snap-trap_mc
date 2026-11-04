@@ -18,7 +18,7 @@
   --bg: #ffffff;
   --bg-soft: #f5f5f5;
   --mono: 'Consolas', 'Courier New', monospace;
-  --chamfer: 16px; /* Увеличен скос углов под новые размеры */
+  --chamfer: 16px;
   --banner-h: 224px;
   --side-w: 20%;
 }
@@ -106,8 +106,7 @@ body {
 .content {
   flex: 1 1 auto;
   width: calc(100% - var(--side-w));
-  /* Увеличены отступы, убран max-width */
-  padding: 40px 5vw 60px 4vw; 
+  padding: 40px 4vw 60px 4vw;
   min-width: 0;
 }
 
@@ -138,7 +137,7 @@ body {
   top: 60px;
   left: 50%;
   width: 80%;
-  max-width: 320px; /* Меч тоже стал чуть больше */
+  max-width: 320px;
   transform: translateX(-50%);
   transform-origin: 50% 80%;
   z-index: 2;
@@ -194,8 +193,9 @@ body {
   background: #111;
   color: #e6e6e6;
   font-family: var(--mono);
-  font-size: 22px; /* Увеличен шрифт для консоли */
-  padding: 24px 30px 20px; /* Увеличены отступы */
+  font-size: 22px;
+  width: 100%; /* Растянут по ширине */
+  padding: 32px 24px 16px 24px; /* Сверху место под квадраты, снизу впритык */
   position: relative;
   clip-path: polygon(
     var(--chamfer) 0, calc(100% - var(--chamfer)) 0,
@@ -210,7 +210,7 @@ body {
 .terminal::before {
   content: '';
   position: absolute;
-  top: 12px; left: 18px;
+  top: 12px; left: 20px;
   width: 10px; height: 10px;
   background: #444;
   box-shadow: 16px 0 0 #444, 32px 0 0 #444;
@@ -220,12 +220,8 @@ body {
 .api-block { margin-bottom: 24px; }
 
 .api-terminal {
-  width: fit-content;
-  max-width: 100%;
-  padding-top: 36px; /* Больше места под квадраты */
-  padding-left: 30px;
-  padding-right: 40px;
-  white-space: nowrap;
+  padding-top: 36px; /* Чуть больше сверху под квадраты */
+  padding-bottom: 16px; /* Впритык снизу */
 }
 
 .api-label  { color: var(--green); margin-right: 10px; }
@@ -235,7 +231,7 @@ body {
 .version {
   margin-top: 12px;
   color: var(--text-mid);
-  font-size: 20px; /* Крупнее версия */
+  font-size: 20px;
   padding-left: 8px;
 }
 
@@ -245,7 +241,7 @@ body {
 .dashed-frame {
   padding: 30px 40px;
   background: var(--bg-soft);
-  border: 3px dashed var(--green); /* Чуть толще рамка */
+  border: 3px dashed var(--green);
   animation: dashPulse 3s ease-in-out infinite;
 }
 
@@ -257,7 +253,7 @@ body {
 .description-text {
   white-space: pre-wrap;
   color: var(--text-dark);
-  font-size: 22px; /* Крупный текст описания */
+  font-size: 22px;
 }
 
 /* ================= ИВЕНТЫ ================= */
@@ -278,7 +274,7 @@ body {
   width: 100%;
   background: transparent;
   border: none;
-  padding: 20px 30px; /* Больше кликабельной зоны */
+  padding: 20px 30px;
   font-family: var(--mono);
   font-size: 22px;
   color: var(--text-dark);
@@ -311,14 +307,15 @@ body {
 }
 
 .events-terminal { 
-  padding-top: 36px; 
+  padding-top: 36px; /* Место под квадраты */
+  padding-bottom: 16px; /* Впритык снизу */
 }
 
 .events-text {
   white-space: pre-wrap;
   color: #ff4d4d;
   font-family: var(--mono);
-  font-size: 20px; /* Крупный текст ивентов */
+  font-size: 20px;
   margin: 0;
 }
 
@@ -334,9 +331,8 @@ body {
 
 /* ================= АДАПТИВ ================= */
 @media (max-width: 1024px) {
-  /* На планшетах и меньше скосы и отступы чуть меньше */
-  .terminal { font-size: 18px; padding: 20px 24px 16px; --chamfer: 12px; }
-  .api-terminal { padding-top: 28px; padding-left: 24px; padding-right: 30px; }
+  .terminal { font-size: 18px; padding: 24px 20px 12px 20px; --chamfer: 12px; }
+  .api-terminal { padding-top: 28px; padding-bottom: 12px; }
   .description-text, .events-toggle, .events-text { font-size: 18px; }
   .version { font-size: 16px; }
 }
@@ -351,7 +347,6 @@ body {
     background: linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0) 100%);
   }
   .sword-wrapper { top: 10px; left: auto; right: 24px; transform: none; width: 110px; }
-  .api-terminal { white-space: normal; }
 }
 
 @media (max-width: 720px) {
