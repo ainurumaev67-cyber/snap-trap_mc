@@ -8,51 +8,63 @@
 </head>
 <body>
 
+  <!-- ================= БАННЕР ================= -->
   <header class="banner">
-    <div class="banner-half banner-left">
-      <img src="icon.png" alt="Snap Trap icon" class="banner-icon">
+    <div class="banner-left">
+      <img src="icon.png" alt="Snap Trap" class="banner-icon">
       <h1 class="banner-title">
         <span class="title-snap">Snap</span>
         <span class="title-trap">Trap</span>
       </h1>
     </div>
-    <div class="banner-half banner-right"></div>
+    <div class="banner-right"></div>
+    <div class="banner-fade"></div>
   </header>
 
+  <!-- ================= ОСНОВНАЯ СЕТКА ================= -->
   <div class="page">
+
     <main class="content">
+
+      <!-- API -->
       <section class="api-block">
-        <div class="terminal-frame api-terminal">
+        <div class="terminal api-terminal">
           <span class="api-label">API Сервера:</span>
           <span id="api-output" class="api-output">загрузка...</span>
         </div>
         <p class="version">Версия: 1.21.11+</p>
       </section>
 
+      <!-- ОПИСАНИЕ -->
       <section class="description-block">
         <div class="dashed-frame">
           <p id="description-output" class="description-text">загрузка...</p>
         </div>
       </section>
 
+      <!-- ИВЕНТЫ -->
       <section class="events-block">
         <div class="events-frame" id="events-frame">
-          <button class="events-toggle" id="events-toggle" aria-expanded="false">
+          <button class="events-toggle" id="events-toggle" aria-expanded="false" type="button">
             <span class="events-label">Ивенты</span>
-            <span class="toggle-arrow">▾</span>
+            <span class="events-arrow">▾</span>
           </button>
           <div class="events-content" id="events-content">
-            <div class="terminal-frame events-terminal">
+            <div class="terminal events-terminal">
               <pre id="events-output" class="events-text">загрузка...</pre>
             </div>
           </div>
         </div>
       </section>
+
     </main>
 
+    <!-- ПРАВАЯ 20% ПОЛОСА -->
     <aside class="side-strip">
+      <div class="side-strip-fade"></div>
       <img src="sword.png" alt="" class="sword">
     </aside>
+
   </div>
 
   <script src="script.js"></script>
