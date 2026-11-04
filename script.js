@@ -1,4 +1,4 @@
-// ==== Утилита загрузки txt ====
+// ================= УТИЛИТА ЗАГРУЗКИ =================
 async function loadText(path) {
   try {
     const res = await fetch(path, { cache: 'no-store' });
@@ -10,7 +10,7 @@ async function loadText(path) {
   }
 }
 
-// ==== API (одна строка, несколько пунктов через ·) ====
+// ================= API =================
 async function initApi() {
   const out = document.getElementById('api-output');
   const raw = await loadText('Data/api.txt');
@@ -24,7 +24,7 @@ async function initApi() {
     .join('');
 }
 
-// ==== ОПИСАНИЕ ====
+// ================= ОПИСАНИЕ =================
 async function initDescription() {
   const out = document.getElementById('description-output');
   const raw = await loadText('Data/description.txt');
@@ -32,7 +32,7 @@ async function initDescription() {
   out.textContent = raw.trim();
 }
 
-// ==== ИВЕНТЫ ====
+// ================= ИВЕНТЫ =================
 async function initEvents() {
   const out = document.getElementById('events-output');
   const raw = await loadText('Data/events.txt');
@@ -40,11 +40,12 @@ async function initEvents() {
   out.textContent = raw.trim();
 }
 
-// ==== Тогглер ивентов (раскрывает рамку вместе с контентом) ====
+// ================= ТОГГЛЕР ИВЕНТОВ =================
 function initEventsToggle() {
   const btn = document.getElementById('events-toggle');
   const content = document.getElementById('events-content');
   const frame = document.getElementById('events-frame');
+
   btn.addEventListener('click', () => {
     const open = content.classList.toggle('open');
     frame.classList.toggle('open', open);
@@ -52,7 +53,7 @@ function initEventsToggle() {
   });
 }
 
-// ==== Безопасный HTML ====
+// ================= БЕЗОПАСНЫЙ HTML =================
 function escapeHtml(str) {
   return str
     .replace(/&/g, '&amp;')
@@ -61,7 +62,7 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-// ==== Запуск ====
+// ================= ЗАПУСК =================
 document.addEventListener('DOMContentLoaded', () => {
   initApi();
   initDescription();
