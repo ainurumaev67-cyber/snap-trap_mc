@@ -18,7 +18,7 @@
   --bg: #ffffff;
   --bg-soft: #f5f5f5;
   --mono: 'Consolas', 'Courier New', monospace;
-  --chamfer: 12px;
+  --chamfer: 16px; /* Увеличен скос углов под новые размеры */
   --banner-h: 224px;
   --side-w: 20%;
 }
@@ -30,7 +30,7 @@ html, body {
   background: var(--bg);
   color: var(--text-dark);
   font-family: var(--mono);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 body {
@@ -106,10 +106,9 @@ body {
 .content {
   flex: 1 1 auto;
   width: calc(100% - var(--side-w));
-  padding: 40px 40px 60px 40px; /* Увеличены отступы */
+  /* Увеличены отступы, убран max-width */
+  padding: 40px 5vw 60px 4vw; 
   min-width: 0;
-  max-width: 1200px; /* Ограничение ширины для читаемости */
-  margin: 0 auto;    /* Центрирование контента */
 }
 
 /* ================= ПРАВАЯ ПОЛОСА ================= */
@@ -133,13 +132,13 @@ body {
   z-index: 1;
 }
 
-/* ================= МЕЧ И ЭФФЕКТ ЗАЧАРОВАНИЯ ================= */
+/* ================= МЕЧ ================= */
 .sword-wrapper {
   position: absolute;
-  top: 40px;
+  top: 60px;
   left: 50%;
   width: 80%;
-  max-width: 260px;
+  max-width: 320px; /* Меч тоже стал чуть больше */
   transform: translateX(-50%);
   transform-origin: 50% 80%;
   z-index: 2;
@@ -153,7 +152,6 @@ body {
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.35));
 }
 
-/* Эффект зачарования (Glint) */
 .sword-glint {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -166,7 +164,6 @@ body {
     rgba(160, 32, 240, 0) 80%
   );
   background-size: 300% 300%;
-  /* Маска берет форму меча, чтобы блик не выходил за края */
   -webkit-mask-image: url('sword.png');
   mask-image: url('sword.png');
   -webkit-mask-size: contain;
@@ -176,7 +173,7 @@ body {
   -webkit-mask-position: center;
   mask-position: center;
   pointer-events: none;
-  mix-blend-mode: screen; /* Режим наложения для свечения */
+  mix-blend-mode: screen;
   animation: glintMove 3s linear infinite;
 }
 
@@ -197,8 +194,8 @@ body {
   background: #111;
   color: #e6e6e6;
   font-family: var(--mono);
-  font-size: 18px; /* Увеличен размер шрифта */
-  padding: 20px 24px 16px; /* Увеличены отступы */
+  font-size: 22px; /* Увеличен шрифт для консоли */
+  padding: 24px 30px 20px; /* Увеличены отступы */
   position: relative;
   clip-path: polygon(
     var(--chamfer) 0, calc(100% - var(--chamfer)) 0,
@@ -206,72 +203,73 @@ body {
     calc(100% - var(--chamfer)) 100%, var(--chamfer) 100%,
     0 calc(100% - var(--chamfer)), 0 var(--chamfer)
   );
-  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.6);
 }
 
+/* 3 квадрата */
 .terminal::before {
   content: '';
   position: absolute;
-  top: 10px; left: 14px;
-  width: 8px; height: 8px;
+  top: 12px; left: 18px;
+  width: 10px; height: 10px;
   background: #444;
-  box-shadow: 14px 0 0 #444, 28px 0 0 #444;
+  box-shadow: 16px 0 0 #444, 32px 0 0 #444;
 }
 
 /* ================= API ================= */
-.api-block { margin-bottom: 20px; }
+.api-block { margin-bottom: 24px; }
 
 .api-terminal {
   width: fit-content;
   max-width: 100%;
-  padding-top: 30px; /* Больше места под квадраты */
-  padding-left: 24px;
-  padding-right: 32px;
+  padding-top: 36px; /* Больше места под квадраты */
+  padding-left: 30px;
+  padding-right: 40px;
   white-space: nowrap;
 }
 
-.api-label  { color: var(--green); margin-right: 8px; }
+.api-label  { color: var(--green); margin-right: 10px; }
 .api-output { color: #ffffff; }
 .api-output .api-item + .api-item::before { content: '  ·  '; color: var(--green); }
 
 .version {
-  margin-top: 8px;
+  margin-top: 12px;
   color: var(--text-mid);
-  font-size: 16px;
-  padding-left: 4px;
+  font-size: 20px; /* Крупнее версия */
+  padding-left: 8px;
 }
 
 /* ================= ОПИСАНИЕ ================= */
-.description-block { margin-bottom: 24px; }
+.description-block { margin-bottom: 32px; }
 
 .dashed-frame {
-  padding: 24px 30px;
+  padding: 30px 40px;
   background: var(--bg-soft);
-  border: 2px dashed var(--green);
+  border: 3px dashed var(--green); /* Чуть толще рамка */
   animation: dashPulse 3s ease-in-out infinite;
 }
 
 @keyframes dashPulse {
   0%, 100% { border-color: var(--green);      box-shadow: 0 0 0 0 var(--green-glow); }
-  50%      { border-color: var(--green-dark); box-shadow: 0 0 14px 2px var(--green-glow); }
+  50%      { border-color: var(--green-dark); box-shadow: 0 0 16px 4px var(--green-glow); }
 }
 
 .description-text {
   white-space: pre-wrap;
   color: var(--text-dark);
-  font-size: 18px;
+  font-size: 22px; /* Крупный текст описания */
 }
 
 /* ================= ИВЕНТЫ ================= */
 .events-block { margin-top: 10px; }
 
 .events-frame {
-  border: 2px solid var(--green);
+  border: 3px solid var(--green);
   background: var(--bg-soft);
   overflow: hidden;
   transition: box-shadow 0.3s ease;
 }
-.events-frame.open { box-shadow: 0 0 16px 2px var(--green-glow); }
+.events-frame.open { box-shadow: 0 0 20px 4px var(--green-glow); }
 
 .events-toggle {
   display: flex;
@@ -280,9 +278,9 @@ body {
   width: 100%;
   background: transparent;
   border: none;
-  padding: 18px 24px;
+  padding: 20px 30px; /* Больше кликабельной зоны */
   font-family: var(--mono);
-  font-size: 18px;
+  font-size: 22px;
   color: var(--text-dark);
   cursor: pointer;
   transition: background 0.2s ease;
@@ -293,7 +291,7 @@ body {
 
 .events-arrow {
   color: var(--green);
-  font-size: 16px;
+  font-size: 20px;
   transition: transform 0.3s ease;
   display: inline-block;
 }
@@ -303,22 +301,24 @@ body {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 0 20px;
   transition: max-height 0.45s ease, opacity 0.3s ease, padding 0.3s ease;
 }
 .events-content.open {
   max-height: 1400px;
   opacity: 1;
-  padding: 0 16px 20px;
+  padding: 0 20px 24px;
 }
 
-.events-terminal { padding-top: 30px; }
+.events-terminal { 
+  padding-top: 36px; 
+}
 
 .events-text {
   white-space: pre-wrap;
   color: #ff4d4d;
   font-family: var(--mono);
-  font-size: 16px;
+  font-size: 20px; /* Крупный текст ивентов */
   margin: 0;
 }
 
@@ -333,6 +333,14 @@ body {
 }
 
 /* ================= АДАПТИВ ================= */
+@media (max-width: 1024px) {
+  /* На планшетах и меньше скосы и отступы чуть меньше */
+  .terminal { font-size: 18px; padding: 20px 24px 16px; --chamfer: 12px; }
+  .api-terminal { padding-top: 28px; padding-left: 24px; padding-right: 30px; }
+  .description-text, .events-toggle, .events-text { font-size: 18px; }
+  .version { font-size: 16px; }
+}
+
 @media (max-width: 820px) {
   .page { flex-direction: column; }
   .content { width: 100%; padding: 20px; }
