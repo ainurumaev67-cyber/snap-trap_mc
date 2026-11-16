@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snap Trap</title>
-  <!-- Иконка сайта -->
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -32,9 +31,11 @@
       <section class="api-block">
         <div class="terminal api-terminal">
           <span class="api-label">API Сервера:</span>
-          <span id="api-output" class="api-output">загрузка...</span>
+          <span id="api-output" class="api-output clickable" title="Нажмите, чтобы скопировать">загрузка...</span>
         </div>
-        <p class="version">Версия: 1.21.11+</p>
+        <p class="version">
+          Версия: 1.21.11+ <span class="badge">Java</span>
+        </p>
       </section>
 
       <!-- ОПИСАНИЕ -->
@@ -65,15 +66,25 @@
     <aside class="side-strip">
       <div class="side-strip-fade"></div>
       
-      <!-- Обертка для меча для эффекта зачарования -->
       <div class="sword-wrapper">
         <img src="sword.png" alt="" class="sword">
         <div class="sword-glint"></div>
       </div>
-      
+
+      <!-- Соцсети и Магазин -->
+      <div class="side-links" id="side-links">
+        <!-- Кнопка ведет на shop.html -->
+        <a href="shop.html" class="side-btn store-btn">Магазин</a>
+        <div class="socials-container" id="socials-container">
+          <!-- Сюда будут вставляться кнопки соцсетей -->
+        </div>
+      </div>
     </aside>
 
   </div>
+
+  <!-- Всплывающее уведомление -->
+  <div id="toast" class="toast">Скопировано!</div>
 
   <script src="script.js"></script>
 </body>
